@@ -7,6 +7,7 @@ import com.awesomecopilot.cloud.order.dto.OrderDTO;
 import com.awesomecopilot.cloud.order.entity.OrderEntity;
 import com.awesomecopilot.common.lang.exception.BusinessException;
 import com.awesomecopilot.common.lang.vo.Result;
+import com.awesomecopilot.networking.utils.HttpUtils;
 import com.awesomecopilot.orm.dao.CriteriaOperations;
 import com.awesomecopilot.orm.dao.EntityOperations;
 import com.awesomecopilot.orm.dao.SQLOperations;
@@ -53,9 +54,15 @@ public class OrderService {
 		StorageDTO storageDTO = new StorageDTO();
 		storageDTO.setCommodityCode(orderDTO.getCommodityCode());
 		storageDTO.setCount(orderDTO.getCount());
-		Result storageResult = restTemplate.postForObject(storageUrl, orderDTO, Result.class);
+		//Result storageResult = restTemplate.postForObject(storageUrl, orderDTO, Result.class);
 
-		if (!storageResult.success()) {
+		//测试用HttpUtils完成restTemplate所做的事
+		Result storageResult = HttpUtils.post(storageUrl)
+				.body(storageDTO)
+				.responseType(Result.class)
+				.request();
+
+		if (!storageResult.isSuccess()) {
 			throw new BusinessException(storageResult.getMessage().toString());
 		}
 
@@ -63,8 +70,15 @@ public class OrderService {
 		AccountDTO accountDTO = new AccountDTO();
 		accountDTO.setUserId(orderDTO.getUserId());
 		accountDTO.setPrice(orderDTO.getMoney());
-		Result accountResult = restTemplate.postForObject(accountUrl, accountDTO, Result.class);
-		if (!accountResult.success()) {
+		//Result accountResult = restTemplate.postForObject(accountUrl, accountDTO, Result.class);
+
+		//测试用HttpUtils完成restTemplate所做的事
+		Result accountResult = HttpUtils.post(accountUrl)
+				.body(accountDTO)
+				.responseType(Result.class)
+				.request();
+
+		if (!accountResult.isSuccess()) {
 			throw new BusinessException(accountResult.getMessage().toString());
 		}
 		// save order
