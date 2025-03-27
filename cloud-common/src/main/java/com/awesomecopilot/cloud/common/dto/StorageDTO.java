@@ -1,4 +1,4 @@
-package com.awesomecopilot.cloud.dto;
+package com.awesomecopilot.cloud.common.dto;
 
 import lombok.Data;
 

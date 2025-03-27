@@ -1,5 +1,6 @@
 package com.awesomecopilot.cloud.order.entity;
 
+import com.awesomecopilot.orm.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Data
 @Entity
 @Table(name = "`order`")
-public class OrderEntity {
+public class OrderEntity extends BaseEntity {
 	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)

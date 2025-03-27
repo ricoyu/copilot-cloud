@@ -57,6 +57,10 @@ spring:
         max-retries-on-same-service-instance: 3
         max-retries-on-next-service-instance: 1
         retry-on-all-operations: false
+      eager-load:
+        clients:
+          - storage-service
+          - account-service
   datasource:
     druid:
       url: jdbc:mysql://localhost:3306/tlmall_order?serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&useCompression=true&useUnicode=true&autoReconnect=true&autoReconnectForPools=true&failOverReadOnly=false

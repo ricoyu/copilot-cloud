@@ -52,7 +52,7 @@ http-server -p 80
 
 然后就可以通过页面来发起测试了http://localhost/order.html
 
-### 1.1.1 组合1 -- 演示RestTemplate调用
+### 1.1.1 Demo1 -- 演示RestTemplate调用
 
 分支 lb-001
 
@@ -71,7 +71,40 @@ http-server -p 80
 
 要启动order, account, storage三个服务
 
+Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加loadbalance组件即可解决
 
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+</dependency>
+```
+
+演示RestTemplate加上@LoadBalanced注解后便具有:
+
+* ribbon客户端负载均衡功能
+* 根据微服务名称来调用
+
+
+
+### 1.1.2 Demo2 -- 演示RestTemplate服务发现/负载均衡
+
+分支 lb-002
+
+测试URL: POST http://localhost:8082/order/create
+
+参数示例:
+
+```json
+{
+    "userId": 1001,
+    "commodityCode": 1,
+    "count": 100,
+    "money": 50
+}
+```
+
+要启动order, account, storage三个服务
 
 Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加loadbalance组件即可解决
 
@@ -90,11 +123,11 @@ Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加
 1. awesome-service
    * server.port设为0, 就是每次启动分配一个随机端口号, Idea要允许它启动多个instance
    * 这个不需要连数据库
-   
+
 2. portal-service
    * 通过restTemplate.getForObject("http://awesome-service/aws/port", String.class);来循环调用awesome-service 100次, 拿到端口号
-   
-     
+
+
 
 ### 1.1.2 Demo2 -- 演示feign调用
 

@@ -1,7 +1,7 @@
 package com.awesomecopilot.cloud.storage.controller;
 
-import com.awesomecopilot.cloud.storage.dto.StorageDTO;
 import com.awesomecopilot.cloud.feign.annotation.Idempotent;
+import com.awesomecopilot.cloud.storage.dto.StorageDTO;
 import com.awesomecopilot.cloud.storage.service.StorageService;
 import com.awesomecopilot.common.lang.vo.Result;
 import com.awesomecopilot.common.lang.vo.Results;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,8 +30,8 @@ public class StorageController {
 	 */
 	@Idempotent
 	@PostMapping("/reduce-stock")
-	public Result reduceStock(@RequestBody StorageDTO storageDTO, @RequestHeader(value = "Idempotent", required = false) String idempotent) {
-		log.info("idempotent: {}", idempotent);
+	public Result reduceStock(@RequestBody StorageDTO storageDTO) {
+		log.info("调用到这个instance");
 		storageService.deduct(storageDTO.getCommodityCode(), storageDTO.getCount());
 		return Results.success().build();
 	}

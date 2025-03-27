@@ -1,7 +1,7 @@
 package com.awesomecopilot.cloud.storage;
 
 import com.awesomecopilot.common.lang.vo.Result;
-import com.awesomecopilot.cloud.dto.StorageDTO;
+import com.awesomecopilot.cloud.common.dto.StorageDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
