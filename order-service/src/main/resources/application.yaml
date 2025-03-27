@@ -47,10 +47,10 @@ spring:
             connect-timeout: 5000
             read-timeout: 100000
             request-interceptors:
-              - com.loserico.cloud.feign.interceptor.IdempotentInterceptor
+              - com.awesomecopilot.cloud.feign.interceptor.IdempotentInterceptor
           order-service:
             request-interceptors:
-              - com.loserico.cloud.sentinel.auth.AuthFlowInterceptor
+              - com.awesomecopilot.cloud.sentinel.auth.AuthFlowInterceptor
     loadbalancer:
       retry:
         enabled: true

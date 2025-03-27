@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.copilot</groupId>
-        <artifactId>cloud-2023</artifactId>
-        <version>17.0.1</version>
+        <groupId>com.awesomecopilot</groupId>
+        <artifactId>copilot-cloud</artifactId>
+        <version>17.0.0</version>
     </parent>
     <artifactId>awesome-service</artifactId>
 
@@ -33,11 +33,11 @@
         </dependency>
 
         <dependency>
-            <groupId>com.copilot</groupId>
+            <groupId>com.awesomecopilot</groupId>
             <artifactId>copilot-spring-cloud-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.copilot</groupId>
+            <groupId>com.awesomecopilot</groupId>
             <artifactId>copilot-spring-boot-web-starter</artifactId>
         </dependency>
         <!--feign-->

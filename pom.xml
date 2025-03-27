@@ -7,10 +7,10 @@
         <artifactId>spring-boot-dependencies</artifactId>
         <version>3.2.4</version>
     </parent>
-    <groupId>com.copilot</groupId>
-    <artifactId>cloud-2023</artifactId>
+    <groupId>com.awesomecopilot</groupId>
+    <artifactId>copilot-cloud</artifactId>
     <packaging>pom</packaging>
-    <version>17.0.1</version>
+    <version>17.0.0</version>
     <name>awesome-cloud</name>
     <description>Parent project for Spring Cloud</description>
 
@@ -59,84 +59,84 @@
                 <scope>runtime</scope>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>commons-lang</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>commons-cloud</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>commons-spring</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>copilot-cache</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>copilot-orm</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>copilot-json</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>copilot-codec</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>copilot-networking</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>copilot-web</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>copilot-validation</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>copilot-search</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>copilot-workbook</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>copilot-spring-boot-starter</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>copilot-spring-boot-web-starter</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>copilot-spring-cloud-starter</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
             <dependency>
-                <groupId>com.copilot</groupId>
+                <groupId>com.awesomecopilot</groupId>
                 <artifactId>copilot-spring-boot-oauth2</artifactId>
-                <version>17.0.1</version>
+                <version>17.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

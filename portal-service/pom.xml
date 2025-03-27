@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.copilot</groupId>
-        <artifactId>cloud-2023</artifactId>
-        <version>17.0.1</version>
+        <groupId>com.awesomecopilot</groupId>
+        <artifactId>copilot-cloud</artifactId>
+        <version>17.0.0</version>
     </parent>
     <artifactId>portal-service</artifactId>
 
@@ -15,7 +15,7 @@
             <artifactId>sentinel-datasource-nacos</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.copilot</groupId>
+            <groupId>com.awesomecopilot</groupId>
             <artifactId>awesome-service-api</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
@@ -71,22 +71,22 @@
             <version>2.6</version>
         </dependency>
         <dependency>
-            <groupId>com.copilot</groupId>
+            <groupId>com.awesomecopilot</groupId>
             <artifactId>commons-lang</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.copilot</groupId>
+            <groupId>com.awesomecopilot</groupId>
             <artifactId>commons-spring</artifactId>
         </dependency>
         <!--<dependency>
-            <groupId>com.copilot</groupId>
+            <groupId>com.awesomecopilot</groupId>
             <artifactId>loser-spring-boot-web-starter</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.copilot</groupId>
+            <groupId>com.awesomecopilot</groupId>
             <artifactId>loser-spring-cloud-starter</artifactId>
-            <version>17.0.1</version>
+            <version>17.0.0</version>
         </dependency>
         -->
         <dependency>

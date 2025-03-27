@@ -50,7 +50,7 @@ spring:
           entitymanager:
             class: org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
             mappingDirectoryLocations: classpath:named-sql
-          packagesToScan: com.loserico.cloud.entity
+          packagesToScan: com.awesomecopilot.cloud.entity
       hibernate:
         ddl-auto: none #配置hibernate不自动执行ddl是在这里, 而不是上面的spring.jpa.properties.hibernate.ddl-auto
 

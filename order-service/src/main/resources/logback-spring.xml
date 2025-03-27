@@ -52,7 +52,7 @@
         <appender-ref ref="FILE"/>
         <appender-ref ref="ERROR_LOG"/>
     </root>
-    <logger name="com.loserico.cloud.account" level="debug"/>
-    <logger name="com.loserico.cloud.storage" level="debug"/>
+    <logger name="com.awesomecopilot.cloud.account" level="debug"/>
+    <logger name="com.awesomecopilot.cloud.storage" level="debug"/>
 
 </configuration>
