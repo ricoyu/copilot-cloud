@@ -1,10 +1,10 @@
-package com.awesomecopilot.cloud.controller;
+package com.awesomecopilot.cloud.account.controller;
 
 import com.awesomecopilot.common.lang.exception.BusinessException;
 import com.awesomecopilot.common.lang.vo.Result;
 import com.awesomecopilot.common.lang.vo.Results;
-import com.awesomecopilot.cloud.dto.AccountDTO;
-import com.awesomecopilot.cloud.order.service.AccountService;
+import com.awesomecopilot.cloud.account.dto.AccountDTO;
+import com.awesomecopilot.cloud.account.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

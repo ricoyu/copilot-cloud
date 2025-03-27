@@ -1,9 +1,9 @@
-package com.awesomecopilot.cloud.order.service;
+package com.awesomecopilot.cloud.storage.service;
 
 import com.awesomecopilot.common.lang.exception.BusinessException;
 import com.awesomecopilot.orm.dao.EntityOperations;
 import com.awesomecopilot.orm.dao.SQLOperations;
-import com.awesomecopilot.cloud.entity.Storage;
+import com.awesomecopilot.cloud.storage.entity.Storage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.awesomecopilot.cloud.entity;
+package com.awesomecopilot.cloud.storage.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

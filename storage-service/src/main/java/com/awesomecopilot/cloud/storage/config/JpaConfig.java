@@ -1,4 +1,4 @@
-package com.awesomecopilot.cloud.config;
+package com.awesomecopilot.cloud.storage.config;
 
 import com.awesomecopilot.orm.dao.JpaDao;
 import org.springframework.context.annotation.Bean;

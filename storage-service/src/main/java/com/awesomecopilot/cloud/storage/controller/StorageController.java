@@ -1,8 +1,8 @@
-package com.awesomecopilot.cloud.controller;
+package com.awesomecopilot.cloud.storage.controller;
 
-import com.awesomecopilot.cloud.dto.StorageDTO;
+import com.awesomecopilot.cloud.storage.dto.StorageDTO;
 import com.awesomecopilot.cloud.feign.annotation.Idempotent;
-import com.awesomecopilot.cloud.order.service.StorageService;
+import com.awesomecopilot.cloud.storage.service.StorageService;
 import com.awesomecopilot.common.lang.vo.Result;
 import com.awesomecopilot.common.lang.vo.Results;
 import lombok.extern.slf4j.Slf4j;

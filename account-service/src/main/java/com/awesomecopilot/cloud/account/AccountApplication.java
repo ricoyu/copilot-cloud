@@ -1,4 +1,4 @@
-package com.awesomecopilot.cloud;
+package com.awesomecopilot.cloud.account;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,6 +6,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
+ * 账户服务
  * <p>
  * Copyright: (C), 2022-07-22 17:12
  * <p>
@@ -18,9 +19,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients
 @SpringBootApplication
 @EnableScheduling
-public class StorageApplication {
+public class AccountApplication {
 	
 	public static void main(String[] args) {
-		SpringApplication.run(StorageApplication.class, args);
+		SpringApplication.run(AccountApplication.class, args);
 	}
 }
