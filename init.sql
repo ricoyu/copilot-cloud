@@ -47,7 +47,7 @@ CREATE TABLE `account`
   AUTO_INCREMENT = 2
   DEFAULT CHARSET = utf8;
 INSERT INTO `account`
-VALUES ('1', 'rico', '100', '2024-08-07 22:53:01', '2024-08-14 13:49:05');
+VALUES ('1', '1001', '100', '2024-08-07 22:53:01', '2024-08-14 13:49:05');
 
 -- for AT mode you must to init this sql for you business database. the seata server not need it.
 CREATE TABLE IF NOT EXISTS `undo_log`

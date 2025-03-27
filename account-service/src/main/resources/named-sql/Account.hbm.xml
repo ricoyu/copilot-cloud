@@ -3,7 +3,7 @@
 <hibernate-mapping>
     <sql-query name="reduceBalance">
         <![CDATA[
-            update account_tbl set money =money-:money where user_id = :userId
+            update account set money =money-:money where user_id = :userId
     	]]>
     </sql-query>
 

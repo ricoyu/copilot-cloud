@@ -47,7 +47,7 @@ public class AccountService{
                 sqlOperations.execute("UPDATE account SET money = money - :price,update_time = :updateTime WHERE user_id = :userId AND money >= :price",
                         params);
         if (updateCount == 0) {
-            throw new BusinessException("reduce balance failed");
+            throw new BusinessException("扣减账户余额失败");
         }
     }
 
@@ -57,7 +57,6 @@ public class AccountService{
      * @return
      */
     public Integer getRemainAccount(String userId) {
-        //return sqlOperations.query4One("SELECT money FROM account WHERE user_id = :userId", "userId", userId);
         return sqlOperations.findOne("selectByUserId", "userId", userId);
     }
 

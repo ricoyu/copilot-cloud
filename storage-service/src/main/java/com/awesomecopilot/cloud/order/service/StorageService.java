@@ -58,6 +58,9 @@ public class StorageService {
 		String sql = """
 				SELECT * FROM `storage` WHERE commodity_code = :commodityCode""";
 		Storage storage = sqlOperations.findOne(sql, "commodityCode", commodityCode, Storage.class);
+		if (storage == null) {
+			throw new BusinessException("找不到商品ID: {} 的库存", commodityCode);
+		}
 		Integer remainCount = storage.getCount();
 
 		if (remainCount < count) {

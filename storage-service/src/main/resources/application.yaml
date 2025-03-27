@@ -58,7 +58,7 @@ hibernate.query.cache: true
 hibernate.jdbc.batch_size: 100
 
 management.endpoints.web.exposure.include: '*'
-loser:
+copilot:
   idemtotent:
     enabled: true
   sentinel:

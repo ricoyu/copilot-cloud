@@ -52,15 +52,26 @@ http-server -p 80
 
 然后就可以通过页面来发起测试了http://localhost/order.html
 
-### 1.1.1 组合1 -- 演示 @LoadBalanced
+### 1.1.1 组合1 -- 演示RestTemplate调用
 
 分支 lb-001
 
-测试URL: http://localhost:8081/portal/lb-restTemplate
+测试URL: POST http://localhost:8082/order/create
 
-要启动order, account, storage三个服务, 然后直接可以打开上面的页面来测试 http://localhost/order.html
+参数示例:
 
-* 创建订单接口是: http://localhost:8082/order/create
+```json
+{
+    "userId": 1001,
+    "commodityCode": 1,
+    "count": 100,
+    "money": 50
+}
+```
+
+要启动order, account, storage三个服务
+
+
 
 Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加loadbalance组件即可解决
 
