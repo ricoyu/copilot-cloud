@@ -30,10 +30,10 @@ public class StorageController {
 	 */
 	@Idempotent
 	@PostMapping("/reduce-stock")
-	public Result reduceStock(@RequestBody StorageDTO storageDTO) {
+	public Result<StorageDTO> reduceStock(@RequestBody StorageDTO storageDTO) {
 		log.info("调用到这个instance");
 		storageService.deduct(storageDTO.getCommodityCode(), storageDTO.getCount());
-		return Results.success().build();
+		return Results.<StorageDTO>success().result(storageDTO);
 	}
 
 	/**

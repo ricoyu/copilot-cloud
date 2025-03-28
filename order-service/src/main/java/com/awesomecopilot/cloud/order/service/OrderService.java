@@ -1,15 +1,16 @@
 package com.awesomecopilot.cloud.order.service;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.awesomecopilot.cloud.account.AccountFeignApi;
 import com.awesomecopilot.cloud.common.dto.AccountDTO;
 import com.awesomecopilot.cloud.common.dto.StorageDTO;
 import com.awesomecopilot.cloud.order.dto.OrderDTO;
 import com.awesomecopilot.cloud.order.entity.OrderEntity;
+import com.awesomecopilot.cloud.storage.StorageFeignApi;
 import com.awesomecopilot.common.lang.exception.BusinessException;
 import com.awesomecopilot.common.lang.vo.Result;
 import com.awesomecopilot.orm.dao.CriteriaOperations;
 import com.awesomecopilot.orm.dao.EntityOperations;
-import com.awesomecopilot.orm.dao.SQLOperations;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,10 +40,13 @@ public class OrderService {
 	private RestTemplate restTemplate;
 
 	@Autowired
-	private EntityOperations entityOperations;
+	private AccountFeignApi accountFeignApi;
 
 	@Autowired
-	private SQLOperations sqlOperations;
+	private StorageFeignApi storageFeignApi;
+
+	@Autowired
+	private EntityOperations entityOperations;
 
 	@Autowired
 	private CriteriaOperations criteriaOperations;
@@ -54,7 +58,9 @@ public class OrderService {
 		StorageDTO storageDTO = new StorageDTO();
 		storageDTO.setCommodityCode(orderDTO.getCommodityCode());
 		storageDTO.setCount(orderDTO.getCount());
-		Result storageResult = restTemplate.postForObject(storageUrl, orderDTO, Result.class);
+
+		Result storageResult = storageFeignApi.reduceStock(storageDTO);
+		//Result storageResult = restTemplate.postForObject(storageUrl, orderDTO, Result.class);
 
 		//测试用HttpUtils完成restTemplate所做的事
 		//Result storageResult = HttpUtils.post(storageUrl)
@@ -71,7 +77,10 @@ public class OrderService {
 		AccountDTO accountDTO = new AccountDTO();
 		accountDTO.setUserId(orderDTO.getUserId());
 		accountDTO.setPrice(orderDTO.getMoney());
-		Result accountResult = restTemplate.postForObject(accountUrl, accountDTO, Result.class);
+
+		Result accountResult = accountFeignApi.reduceBalance(accountDTO);
+
+		//Result accountResult = restTemplate.postForObject(accountUrl, accountDTO, Result.class);
 
 		//测试用HttpUtils完成restTemplate所做的事
 		//Result accountResult = HttpUtils.post(accountUrl)

@@ -14,7 +14,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author Rico Yu ricoyu520@gmail.com
  * @version 1.0
  */
-@EnableFeignClients
+@EnableFeignClients(basePackages = {"com.awesomecopilot.cloud.account", "com.awesomecopilot.cloud.storage"})
 @SpringBootApplication
 public class OrderApplication {
 	

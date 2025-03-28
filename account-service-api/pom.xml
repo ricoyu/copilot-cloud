@@ -30,7 +30,7 @@
         </dependency>
         <dependency>
             <groupId>com.awesomecopilot</groupId>
-            <artifactId>copilot-spring-boot-web-starter</artifactId>
+            <artifactId>commons-lang</artifactId>
         </dependency>
     </dependencies>
 

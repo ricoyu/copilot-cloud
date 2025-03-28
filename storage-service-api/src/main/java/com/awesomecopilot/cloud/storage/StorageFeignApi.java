@@ -19,7 +19,7 @@ public interface StorageFeignApi {
 	 * @return
 	 */
 	@PostMapping("/reduce-stock")
-	public Result reduceStock(@RequestBody StorageDTO storageDTO);
+	public Result<StorageDTO> reduceStock(@RequestBody StorageDTO storageDTO);
 
 	/**
 	 * 获取库存余额
