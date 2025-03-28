@@ -139,6 +139,12 @@ Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加
 
 
 
+### 1.1.3 Nacos 配置中心
+
+分支: 003-nacos-config
+
+
+
 1.1.3 Demo3 -- 演示feign 日志
 
 分支 003-feign-logging
