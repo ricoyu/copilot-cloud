@@ -1,0 +1,83 @@
+server.port: 8086
+#server.port: 0
+
+spring:
+  application:
+    name: product-service
+  config:
+    import:
+#      - optional:nacos:seata-client.yaml
+      - optional:nacos:boot-common.yaml
+  cloud:
+    nacos:
+      server-addr: localhost:8848 #这是Ubuntu中Nginx反向代理的Nacos集群
+      username: ricoyu
+      password: 123456
+      discovery:
+        metadata:
+          nickname: 三少爷
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/ruoyi-vue-pro?serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&useCompression=true&useUnicode=true&autoReconnect=true&autoReconnectForPools=true&failOverReadOnly=false
+      username: cloud2023
+      password: 123456
+      initial-size: 10
+      min-idle: 10
+      max-active: 500
+      max-wait: 60000
+      validation-query: SELECT 1
+      validation-query-timeout: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      keep-alive: false
+      filters: stat,wall
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 1800000
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: -1
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        archive:
+          scanner: org.hibernate.boot.archive.scan.internal.StandardScanner #解决新版Hibernate找不到hbm.xml文件问题
+        show_sql: true
+        format_sql: true
+        ddl-auto: none
+        jdbc.batch_size: 100
+        order_inserts: true
+        order_updates: true
+        jdbc.time_zone: Asia/Shanghai
+#          generate_statistics: true
+        cache:
+          use_second_level_cache: false
+          use_query_cache: false
+        entitymanager:
+          class: org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+          mappingDirectoryLocations: classpath:named-sql
+        packagesToScan: com.awesomecopilot.cloud.entity
+        session_factory:
+          statement_inspector: com.awesomecopilot.orm.interceptor.DeletedTenantIdConditionInterceptor
+    hibernate:
+      ddl-auto: none #配置hibernate不自动执行ddl是在这里, 而不是上面的spring.jpa.properties.hibernate.ddl-auto
+
+hibernate.query.mode: loose
+hibernate.query.cache: true
+hibernate.jdbc.batch_size: 100
+
+management.endpoints.web.exposure.include: '*'
+copilot:
+  idemtotent:
+    enabled: true
+  sentinel:
+    sentinel-auth-enabled: true
+  orm:
+    logical-delete:
+      enabled: true
+
+  filter:
+    tenant:
+      mandatory: true
+      excludeUrls:
+        - /**

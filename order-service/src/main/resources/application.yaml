@@ -1,0 +1,162 @@
+server.port: 8082
+
+spring:
+#  main:
+#    allow-bean-definition-overriding: true
+  application:
+    name: order-service
+  config:
+    import:
+      - nacos:order-db.yaml
+      - optional:nacos:seata-client.yaml
+      - optional:nacos:jackson-config.yaml
+      - optional:nacos:sentinel-dashboard-import.yaml
+      - optional:nacos:sentinel-dashboard-datasource.yaml
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+
+#    sentinel:
+#      transport:
+#        dashboard: localhost:9090
+#      web-context-unify: false
+#      datasource:
+#        flow:
+#          nacos:
+#            server-addr: localhost:8848
+#            data-id: order-service-flow-rules
+#            group-id: SENTINEL_GROUP
+#            data-type: json
+#            rule-type: flow
+#        #降级规则
+#        degrade:
+#          nacos:
+#            server-addr: localhost:8848
+#            data-id: ${spring.application.name}-degrade-rules
+#            group-id: SENTINEL_GROUP
+#            data-type: json
+#            rule-type: degrade
+#        paramFlow:
+#          nacos:
+#            server-addr: localhost:8848
+#            data-id: ${spring.application.name}-param-rules
+#            group-id: SENTINEL_GROUP
+#            data-type: json
+#            rule-type: param_flow
+    openfeign:
+      client:
+        config:
+          default:
+            logger-level: headers
+            connect-timeout: 5000
+            read-timeout: 100000
+            request-interceptors:
+              - com.awesomecopilot.cloud.feign.interceptor.IdempotentInterceptor
+          order-service:
+            request-interceptors:
+              - com.awesomecopilot.cloud.sentinel.auth.AuthFlowInterceptor
+    loadbalancer:
+      retry:
+        enabled: true
+        max-retries-on-same-service-instance: 3
+        max-retries-on-next-service-instance: 1
+        retry-on-all-operations: false
+      eager-load:
+        clients:
+          - storage-service
+          - account-service
+#  datasource:
+#    druid:
+#      url: jdbc:mysql://localhost:3306/tlmall_order?serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&useCompression=true&useUnicode=true&autoReconnect=true&autoReconnectForPools=true&failOverReadOnly=false
+#      username: cloud2023
+#      password: 123456
+#      initial-size: 10
+#      min-idle: 10
+#      max-active: 500
+#      max-wait: 60000
+#      validation-query: SELECT 1
+#      validation-query-timeout: 60000
+#      test-while-idle: true
+#      test-on-borrow: false
+#      test-on-return: false
+#      keep-alive: false
+#      filters: stat,wall
+#      time-between-eviction-runs-millis: 60000
+#      min-evictable-idle-time-millis: 1800000
+#      pool-prepared-statements: false
+#      max-pool-prepared-statement-per-connection-size: -1
+
+
+hibernate.query.mode: loose
+hibernate.query.cache: true
+hibernate.jdbc.batch_size: 100
+
+management.endpoints.web.exposure.include: '*'
+loser:
+  mvc:
+    rest-exception-advice-enabled: false
+    
+  jpa:
+      properties: 
+        hibernate:
+          dialect: org.hibernate.dialect.MySQLDialect
+          archive:
+            scanner: org.hibernate.boot.archive.scan.internal.StandardScanner #解决新版Hibernate找不到hbm.xml文件问题
+          show_sql: true
+          format_sql: true
+          ddl-auto: none
+          jdbc.batch_size: 100
+          order_inserts: true
+          order_updates: true
+          jdbc.time_zone: Asia/Shanghai
+          generate_statistics: true
+          cache:
+            use_second_level_cache: false
+            use_query_cache: false
+          entitymanager:
+            class: org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+            mappingDirectoryLocations: classpath:named-sql
+          packagesToScan: com.awesomecopilot.cloud.order.entity
+      hibernate:
+        ddl-auto: none #配置hibernate不自动执行ddl是在这里, 而不是上面的spring.jpa.properties.hibernate.ddl-auto
+
+#seata:
+#  tx-service-group: default_tx_group
+#  registry:
+#    # 指定nacos作为注册中心
+#    type: nacos
+#    nacos:
+#      application: seata-server
+#      server-addr: localhost:8848
+#      namespace: seata
+#      group: SEATA_GROUP
+#  config:
+#    # 指定nacos作为配置中心
+#    type: nacos
+#    nacos:
+#      server-addr: localhost:8848
+#      namespace: seata
+#      group: SEATA_GROUP
+#      data-id: seataServer.properties
+
+copilot:
+  mvc:
+    rest-exception-advice-enabled: true
+
+seata:
+  application-id: ${spring.application.name}
+  tx-service-group: default_tx_group
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: localhost:8848
+      namespace:
+      group: SEATA_GROUP
+      cluster: default
+  config:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      group: SEATA_GROUP
+      data-id: seataServer.properties

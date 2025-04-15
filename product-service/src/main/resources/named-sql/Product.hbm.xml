@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+    <sql-query name="queryProductSpu">
+        <![CDATA[
+            select * from product_spu
+            where `status`=1
+            #if($keyword)
+                and name like :keyword
+            #end
+            #if(!$categoryIds.isEmpty())
+                and category_id in :categoryIds
+            #end
+            #if($!sortField == "salesCount")
+                ORDER BY (sales_count + virtual_sales_count) #ifEqual($sortAsc, true, "ASC", "DESC")
+            #elseif($!sortField == "price")
+                ORDER BY price #ifEqual($sortAsc, true, "ASC", "DESC")
+            #elseif($!sortField == "createTime")
+                ORDER BY create_time #ifEqual($sortAsc, true, "ASC", "DESC")
+            #else
+                ORDER BY `sort` desc, id desc
+            #end
+    	]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+server.port: 0
+spring:
+  application:
+    name: awesome-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    openfeign:
+      compression:
+        request:
+          enabled: true
+          mime-types: text/plain,text/xml,application/xml,application/json
+          min-request-size: 1
+        response:
+          enabled: true
+
+management.endpoints.web.exposure.include: '*'
