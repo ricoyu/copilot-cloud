@@ -31,6 +31,7 @@
         <module>member-service</module>
         <module>member-service-api</module>
         <module>trade-service</module>
+        <module>statistic-service</module>
     </modules>
 
     <properties>

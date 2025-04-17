@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+
+    <sql-query name="selectSummaryListByAreaId">
+        <![CDATA[
+            SELECT area_id, COUNT(1) AS userCount
+            FROM member_user
+            GROUP BY area_id
+    	]]>
+    </sql-query>
+
+    <sql-query name="selectSummaryListByAreaId2">
+        <![CDATA[
+            SELECT receiver_area_id                                AS areaId,
+               (SELECT COUNT(DISTINCT s.user_id)
+                FROM trade_order AS s
+                WHERE s.receiver_area_id = m.receiver_area_id) AS orderCreateUserCount,
+               (SELECT COUNT(DISTINCT s.user_id)
+                FROM trade_order AS s
+                WHERE s.receiver_area_id = m.receiver_area_id
+                  AND s.pay_status = TRUE
+                  AND s.deleted = FALSE)                       AS orderPayUserCount,
+               (SELECT SUM(s.pay_price)
+                FROM trade_order AS s
+                WHERE s.receiver_area_id = m.receiver_area_id
+                  AND s.pay_status = TRUE
+                  AND s.deleted = FALSE)                       AS orderPayPrice
+        FROM trade_order m
+        GROUP BY receiver_area_id
+    	]]>
+    </sql-query>
+</hibernate-mapping>
