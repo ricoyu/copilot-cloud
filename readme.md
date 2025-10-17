@@ -89,38 +89,16 @@ Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加
 
 
 
-### 1.1.2 Demo2 -- 演示RestTemplate服务发现/负载均衡
-
-分支 lb-002
-
-测试URL: POST http://localhost:8082/order/create
-
-参数示例:
-
-```json
-{
-    "userId": 1001,
-    "commodityCode": 1,
-    "count": 100,
-    "money": 50
-}
-```
-
-要启动order, account, storage三个服务
-
-Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加loadbalance组件即可解决
-
-```xml
-<dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-loadbalancer</artifactId>
-</dependency>
-```
+### 1.1.2 002-service-lb
 
 演示RestTemplate加上@LoadBalanced注解后便具有:
 
 * ribbon客户端负载均衡功能
 * 根据微服务名称来调用
+
+入口
+
+GET http://localhost:8081/portal/lb-restTemplate
 
 1. awesome-service
    * server.port设为0, 就是每次启动分配一个随机端口号, Idea要允许它启动多个instance

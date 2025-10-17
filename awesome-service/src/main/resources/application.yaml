@@ -4,8 +4,12 @@ spring:
     name: awesome-service
   cloud:
     nacos:
+      server-addr: localhost:8848
+      username: ricoyu
+      password: 123456
       discovery:
-        server-addr: localhost:8848
+        group: dev
+        ip: 127.0.0.1
     openfeign:
       compression:
         request:

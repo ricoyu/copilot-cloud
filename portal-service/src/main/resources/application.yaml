@@ -13,10 +13,11 @@ spring:
   cloud:
     nacos:
       server-addr: localhost:8848
+      username: ricoyu
+      password: 123456
       discovery:
-        metadata:
-          version: 1.0.0
-#      config:
+        group: dev
+    #      config:
 #        file-extension: yaml
     loadbalancer:
       eager-load:
