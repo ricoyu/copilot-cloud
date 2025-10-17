@@ -1,9 +1,10 @@
 package com.awesomecopilot.cloud.product.service;
 
 import com.awesomecopilot.cloud.product.entity.ProductBrowseHistory;
+import com.awesomecopilot.common.lang.context.ThreadContext;
+import com.awesomecopilot.common.lang.vo.Page;
 import com.awesomecopilot.orm.dao.CriteriaOperations;
 import com.awesomecopilot.orm.dao.EntityOperations;
-import com.awesomecopilot.orm.vo.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,14 +38,15 @@ public class ProductBrowseHistoryService {
 		if (history != null) {
 			entityOperations.delete(history);
 		} else {
-			PageResult<List<ProductBrowseHistoryService>> pageResult =
+			List<ProductBrowseHistoryService> result =
 					criteriaOperations.query(ProductBrowseHistory.class)
 							.eq("userId", userId)
 							.asc("createTime")
 							.findPage(1, 1);
-			if (pageResult.totalCount() > USER_STORE_MAXIMUM) {
-				if (pageResult.getData().size() < 0) {
-					entityOperations.delete(pageResult.getData().get(0));
+			Page page = ThreadContext.get("page");
+			if (page.getTotalCount() > USER_STORE_MAXIMUM) {
+				if (result.size() < 0) {
+					entityOperations.delete(result.get(0));
 				}
 			}
 		}

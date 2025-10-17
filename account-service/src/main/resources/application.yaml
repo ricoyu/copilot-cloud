@@ -10,6 +10,11 @@ spring:
   cloud:
     nacos:
       server-addr: localhost:8848
+      username: ricoyu
+      password: 123456
+      discovery:
+        group: dev
+        ip: 127.0.0.1
   datasource:
       druid:
         url: jdbc:mysql://localhost:3306/tlmall_account?serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&useCompression=true&useUnicode=true&autoReconnect=true&autoReconnectForPools=true&failOverReadOnly=false
@@ -60,5 +65,3 @@ management.endpoints.web.exposure.include: '*'
 hibernate.query.mode: loose
 hibernate.query.cache: true
 hibernate.jdbc.batch_size: 100
-
-seata

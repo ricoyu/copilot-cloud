@@ -52,7 +52,9 @@ http-server -p 80
 
 然后就可以通过页面来发起测试了http://localhost/order.html
 
-### 1.1.1 Demo1 -- 演示RestTemplate调用
+### 1.1.1 001-service-discovery
+
+演示通过RestTemplate实现微服务间调用
 
 分支 lb-001
 

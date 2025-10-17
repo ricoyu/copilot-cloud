@@ -11,7 +11,7 @@ import com.awesomecopilot.common.lang.exception.BusinessException;
 import com.awesomecopilot.common.lang.vo.Result;
 import com.awesomecopilot.orm.dao.CriteriaOperations;
 import com.awesomecopilot.orm.dao.EntityOperations;
-import io.seata.spring.annotation.GlobalTransactional;
+//import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,7 +53,7 @@ public class OrderService {
 	private CriteriaOperations criteriaOperations;
 
 	@Transactional
-	@GlobalTransactional(rollbackFor = Exception.class)
+	//@GlobalTransactional(rollbackFor = Exception.class)
 	public Long createOrder(OrderDTO orderDTO) {
 		//String storageUrl = "http://localhost:8086/storage/reduce-stock";
 		String storageUrl = "http://storage-service/storage/reduce-stock";
@@ -61,8 +61,8 @@ public class OrderService {
 		storageDTO.setCommodityCode(orderDTO.getCommodityCode());
 		storageDTO.setCount(orderDTO.getCount());
 
-		Result<StorageDTO> storageResult = storageFeignApi.reduceStock(storageDTO);
-		//Result storageResult = restTemplate.postForObject(storageUrl, orderDTO, Result.class);
+		//Result<StorageDTO> storageResult = storageFeignApi.reduceStock(storageDTO);
+		Result storageResult = restTemplate.postForObject(storageUrl, orderDTO, Result.class);
 
 		//测试用HttpUtils完成restTemplate所做的事
 		//Result storageResult = HttpUtils.post(storageUrl)
@@ -80,9 +80,8 @@ public class OrderService {
 		accountDTO.setUserId(orderDTO.getUserId());
 		accountDTO.setPrice(orderDTO.getMoney());
 
-		Result accountResult = accountFeignApi.reduceBalance(accountDTO);
-
-		//Result accountResult = restTemplate.postForObject(accountUrl, accountDTO, Result.class);
+		//Result accountResult = accountFeignApi.reduceBalance(accountDTO);
+		Result accountResult = restTemplate.postForObject(accountUrl, accountDTO, Result.class);
 
 		//测试用HttpUtils完成restTemplate所做的事
 		//Result accountResult = HttpUtils.post(accountUrl)

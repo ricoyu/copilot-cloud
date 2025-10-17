@@ -8,15 +8,20 @@ spring:
   config:
     import:
       - nacos:order-db.yaml
-      - optional:nacos:seata-client.yaml
-      - optional:nacos:jackson-config.yaml
-      - optional:nacos:sentinel-dashboard-import.yaml
-      - optional:nacos:sentinel-dashboard-datasource.yaml
+#      - optional:nacos:seata-client.yaml
+#      - optional:nacos:jackson-config.yaml
+#      - optional:nacos:sentinel-dashboard-import.yaml
+#      - optional:nacos:sentinel-dashboard-datasource.yaml
   cloud:
     nacos:
       server-addr: localhost:8848
+      username: ricoyu
+      password: 123456
+      discovery:
+        group: dev
+        ip: 192.168.100.106
 
-#    sentinel:
+    #    sentinel:
 #      transport:
 #        dashboard: localhost:9090
 #      web-context-unify: false
@@ -142,21 +147,3 @@ loser:
 copilot:
   mvc:
     rest-exception-advice-enabled: true
-
-seata:
-  application-id: ${spring.application.name}
-  tx-service-group: default_tx_group
-  registry:
-    type: nacos
-    nacos:
-      application: seata-server
-      server-addr: localhost:8848
-      namespace:
-      group: SEATA_GROUP
-      cluster: default
-  config:
-    type: nacos
-    nacos:
-      server-addr: localhost:8848
-      group: SEATA_GROUP
-      data-id: seataServer.properties
