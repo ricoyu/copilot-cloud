@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "account")
+@Table(name = "account_tbl")
 public class Account extends BaseEntity {
 	
 	@Column(name = "user_id")

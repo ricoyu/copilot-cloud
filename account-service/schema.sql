@@ -1,10 +1,10 @@
-drop database if exists seata_at_account;
-create database seata_at_account default character set utf8mb4 default collate utf8mb4_general_ci;
-DROP USER IF EXISTS 'seata'@'%';
-CREATE USER 'seata'@'%' identified by '123456';
-grant all on seata_at_account.* to 'seata'@'%';
+drop database if exists tlmall_account;
+create database tlmall_account default character set utf8mb4 default collate utf8mb4_general_ci;
+DROP USER IF EXISTS 'cloud2023'@'%';
+CREATE USER 'cloud2023'@'%' identified by '123456';
+grant all on tlmall_account.* to 'cloud2023'@'%';
 flush privileges;
-use seata_at_account;
+use tlmall_account;
 create table account_tbl(id int primary key auto_increment, user_id varchar(50) not null, money int not null);
 insert into account_tbl(user_id, money) values('1001', 40), ('1002', 9980), ('1003', 999);
 
