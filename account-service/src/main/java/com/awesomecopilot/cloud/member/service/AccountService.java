@@ -3,7 +3,6 @@ package com.awesomecopilot.cloud.member.service;
 import com.awesomecopilot.common.lang.exception.BusinessException;
 import com.awesomecopilot.orm.dao.EntityOperations;
 import com.awesomecopilot.orm.dao.SQLOperations;
-import io.seata.core.context.RootContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +34,6 @@ public class AccountService{
      */
     @Transactional
     public void reduceBalance(String userId, Integer price) throws BusinessException {
-        log.info("[reduceBalance] currenet XID: {}", RootContext.getXID());
 
         checkBalance(userId, price);
 

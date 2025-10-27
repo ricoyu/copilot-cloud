@@ -4,7 +4,6 @@ import com.awesomecopilot.cloud.trade.entity.Storage;
 import com.awesomecopilot.common.lang.exception.BusinessException;
 import com.awesomecopilot.orm.dao.EntityOperations;
 import com.awesomecopilot.orm.dao.SQLOperations;
-import io.seata.core.context.RootContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +26,6 @@ public class StorageService {
 	@Transactional
 	public void deduct(String commodityCode, int count) {
 		log.info("=============扣减库存=================");
-		log.info("当前 XID: {}", RootContext.getXID());
 		// 检查库存
 		checkStock(commodityCode, count);
 

@@ -129,7 +129,7 @@ Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加
 
 
 
-### 1.1.2 Demo2 -- 演示feign调用
+### 1.1.2 Demo3 -- 演示feign调用
 
 分支 003-feign
 

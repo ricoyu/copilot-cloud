@@ -5,18 +5,13 @@ spring:
 #    allow-bean-definition-overriding: true
   application:
     name: order-service
-  config:
-    import:
-      - nacos:order-db.yaml
-      - optional:nacos:seata-client.yaml
-      - optional:nacos:jackson-config.yaml
-      - optional:nacos:sentinel-dashboard-import.yaml
-      - optional:nacos:sentinel-dashboard-datasource.yaml
   cloud:
     nacos:
       server-addr: localhost:8848
+      username: ricoyu
+      password: 123456
 
-#    sentinel:
+    #    sentinel:
 #      transport:
 #        dashboard: localhost:9090
 #      web-context-unify: false
@@ -65,39 +60,29 @@ spring:
         clients:
           - storage-service
           - account-service
-#  datasource:
-#    druid:
-#      url: jdbc:mysql://localhost:3306/tlmall_order?serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&useCompression=true&useUnicode=true&autoReconnect=true&autoReconnectForPools=true&failOverReadOnly=false
-#      username: cloud2023
-#      password: 123456
-#      initial-size: 10
-#      min-idle: 10
-#      max-active: 500
-#      max-wait: 60000
-#      validation-query: SELECT 1
-#      validation-query-timeout: 60000
-#      test-while-idle: true
-#      test-on-borrow: false
-#      test-on-return: false
-#      keep-alive: false
-#      filters: stat,wall
-#      time-between-eviction-runs-millis: 60000
-#      min-evictable-idle-time-millis: 1800000
-#      pool-prepared-statements: false
-#      max-pool-prepared-statement-per-connection-size: -1
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/tlmall_order?serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&useCompression=true&useUnicode=true&autoReconnect=true&autoReconnectForPools=true&failOverReadOnly=false
+      username: cloud2023
+      password: 123456
+      initial-size: 10
+      min-idle: 10
+      max-active: 500
+      max-wait: 60000
+      validation-query: SELECT 1
+      validation-query-timeout: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      keep-alive: false
+      filters: stat,wall
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 1800000
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: -1
 
-
-hibernate.query.mode: loose
-hibernate.query.cache: true
-hibernate.jdbc.batch_size: 100
-
-management.endpoints.web.exposure.include: '*'
-loser:
-  mvc:
-    rest-exception-advice-enabled: false
-    
   jpa:
-      properties: 
+      properties:
         hibernate:
           dialect: org.hibernate.dialect.MySQLDialect
           archive:
@@ -119,6 +104,16 @@ loser:
           packagesToScan: com.awesomecopilot.cloud.order.entity
       hibernate:
         ddl-auto: none #配置hibernate不自动执行ddl是在这里, 而不是上面的spring.jpa.properties.hibernate.ddl-auto
+
+
+hibernate.query.mode: loose
+hibernate.query.cache: true
+hibernate.jdbc.batch_size: 100
+
+management.endpoints.web.exposure.include: '*'
+loser:
+  mvc:
+    rest-exception-advice-enabled: false
 
 #seata:
 #  tx-service-group: default_tx_group
