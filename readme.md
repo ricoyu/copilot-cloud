@@ -107,6 +107,36 @@ GET http://localhost:8081/portal/lb-restTemplate
 2. portal-service
    * 通过restTemplate.getForObject("http://awesome-service/aws/port", String.class);来循环调用awesome-service 100次, 拿到端口号
 
+3. 通过修改LBConfig来观察测试效果
+
+   * 全局负载均衡策略
+
+     ```java
+     @Configuration
+     @LoadBalancerClients(
+     		defaultConfiguration = LoadBalancerConfig.DefaultLoadBalancerConfiguration.class
+     )
+     public class LBConfig {
+     }
+     ```
+
+     全局策略是Nacos负载均衡策略, 应该可以支持Nacos中配置的权重, Nacos那边给不同的awesome-service陪吃不能的权限, 看看调用比率
+
+   * 随机策略
+
+     ```java
+     @Configuration
+     @LoadBalancerClients(
+     		value = {
+     				@LoadBalancerClient(name = "awesome-service", configuration = LoadBalancerConfig.AwesomeLBConfig.class)
+     		}
+     )
+     public class LBConfig {
+     }
+     ```
+
+     
+
 
 
 ### 1.1.2 Demo2 -- 演示feign调用

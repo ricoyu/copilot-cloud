@@ -3,7 +3,6 @@ package com.awesomecopilot.cloud.config;
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.alibaba.cloud.nacos.loadbalancer.NacosLoadBalancer;
 import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.cloud.loadbalancer.core.RandomLoadBalancer;
 import org.springframework.cloud.loadbalancer.core.ReactorServiceInstanceLoadBalancer;
 import org.springframework.cloud.loadbalancer.core.RoundRobinLoadBalancer;
 import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
@@ -27,7 +26,7 @@ public class LoadBalancerConfig {
 		public ReactorServiceInstanceLoadBalancer awesomeLoadBalancer(Environment environment,
 		                                                                        ObjectProvider<ServiceInstanceListSupplier> serviceInstanceListSupplier) {
 			String serviceId = environment.getProperty(LoadBalancerClientFactory.PROPERTY_NAME);
-			return new RandomLoadBalancer(serviceInstanceListSupplier, serviceId);
+			return new RoundRobinLoadBalancer(serviceInstanceListSupplier, serviceId);
 		}
 	}
 
