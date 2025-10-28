@@ -60,5 +60,3 @@ management.endpoints.web.exposure.include: '*'
 hibernate.query.mode: loose
 hibernate.query.cache: true
 hibernate.jdbc.batch_size: 100
-
-seata

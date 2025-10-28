@@ -143,6 +143,10 @@ Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加
 
 分支: 004-nacos-config
 
+启动portal-service 1个instance
+
+测试URL: http://localhost:8081/portal/info
+
 
 
 1.1.3 Demo3 -- 演示feign 日志
