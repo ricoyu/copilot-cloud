@@ -23,17 +23,17 @@
 3. seata TC
 
    ```shell
-D:\seata\bin\seata-server.bat
+   D:\seata\bin\seata-server.bat
    ```
-   
+
    三个微服务里面的schema.sql已经包含了业务表和AT模式需要的undo_log表了
 
 4. Skywalking
 
    ```shell
-D:\cloud-2023\skywalking\bin\startup.bat
+   D:\cloud-2023\skywalking\bin\startup.bat
    ```
-   
+
    http://localhost:8080/
 
 5. 微服务接入Skywalking, 需要加入一下JVM 参数
@@ -52,7 +52,9 @@ http-server -p 80
 
 然后就可以通过页面来发起测试了http://localhost/order.html
 
-### 1.1.1 Demo1 -- 演示RestTemplate调用
+### 1.1.1 001-service-discovery
+
+演示通过RestTemplate实现微服务间调用
 
 分支 lb-001
 
@@ -87,49 +89,59 @@ Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加
 
 
 
-### 1.1.2 Demo2 -- 演示RestTemplate服务发现/负载均衡
-
-分支 lb-002
-
-测试URL: POST http://localhost:8082/order/create
-
-参数示例:
-
-```json
-{
-    "userId": 1001,
-    "commodityCode": 1,
-    "count": 100,
-    "money": 50
-}
-```
-
-要启动order, account, storage三个服务
-
-Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加loadbalance组件即可解决
-
-```xml
-<dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-loadbalancer</artifactId>
-</dependency>
-```
+### 1.1.2 002-service-lb
 
 演示RestTemplate加上@LoadBalanced注解后便具有:
 
 * ribbon客户端负载均衡功能
 * 根据微服务名称来调用
 
+入口
+
+GET http://localhost:8081/portal/lb-restTemplate
+
 1. awesome-service
+
    * server.port设为0, 就是每次启动分配一个随机端口号, Idea要允许它启动多个instance
    * 这个不需要连数据库
 
 2. portal-service
+
    * 通过restTemplate.getForObject("http://awesome-service/aws/port", String.class);来循环调用awesome-service 100次, 拿到端口号
 
+3. 通过修改LBConfig来观察测试效果
+
+   * 全局负载均衡策略
+
+     ```java
+     @Configuration
+     @LoadBalancerClients(
+     		defaultConfiguration = LoadBalancerConfig.DefaultLoadBalancerConfiguration.class
+     )
+     public class LBConfig {
+     }
+     ```
+
+     全局策略是Nacos负载均衡策略, 应该可以支持Nacos中配置的权重, Nacos那边给不同的awesome-service陪吃不能的权限, 看看调用比率
+
+   * 随机策略
+
+     ```java
+     @Configuration
+     @LoadBalancerClients(
+     		value = {
+     				@LoadBalancerClient(name = "awesome-service", configuration = LoadBalancerConfig.AwesomeLBConfig.class)
+     		}
+     )
+     public class LBConfig {
+     }
+     ```
+
+     
 
 
-### 1.1.2 Demo2 -- 演示feign调用
+
+### 1.1.2 003-feign
 
 分支 003-feign
 
@@ -139,7 +151,7 @@ Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加
 
 
 
-### 1.1.3 Nacos 配置中心
+### 1.1.3 004-nacos-config
 
 分支: 004-nacos-config
 
@@ -147,7 +159,21 @@ Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加
 
 测试URL: http://localhost:8081/portal/info
 
+* portal-servoce-dev.yaml配置了
 
+  ```yaml
+  name: 俞雪华dev
+  age: 28
+  ```
+
+* portal-service.yaml 配置了
+
+  ```yaml
+  name: Rico Yu
+  age: 43
+  ```
+
+  
 
 1.1.3 Demo3 -- 演示feign 日志
 
@@ -156,8 +182,6 @@ Ribbon组件已经被官方弃用, @LoadBalanced注解不生效的问题, 添加
 测试URL http://localhost:8082/order/create
 
 要启动order, account, storage三个服务, 然后直接可以打开上面的页面来测试 http://localhost/order.html
-
-
 
 ### 1.1.4 Demo4 -- 演示sentinel dashboard
 
